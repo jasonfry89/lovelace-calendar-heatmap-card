@@ -109,23 +109,45 @@ export function processDailyTotals(historyData, ignoredStates) {
       // Calculate time difference
       const diffSeconds = (nextTimestamp - currentTimestamp) / 1000;
 
-      // Skip negative or extremely large time differences (more than a day)
-      if (diffSeconds <= 0 || diffSeconds > 86400) {
+      // Skip negative time differences
+      if (diffSeconds <= 0) {
         skippedEntries++;
         continue;
       }
 
-      // Get the date string (YYYY-MM-DD)
-      const dayStr = currentTimestamp.toISOString().split('T')[0];
+      // Advance time for all days between the current and next history entities
+      let dateAtLocalMidnight = new Date(currentTimestamp.getFullYear(), currentTimestamp.getMonth(), currentTimestamp.getDate());
+      const nextDateAtLocalMidnight = new Date(nextTimestamp.getFullYear(), nextTimestamp.getMonth(), nextTimestamp.getDate());
+      console.log("currentTimestamp", currentTimestamp, "nextTimestamp", nextTimestamp, "dateAtLocalMidnight", dateAtLocalMidnight, "nextDateAtLocalMidnight", nextDateAtLocalMidnight)
+      while(dateAtLocalMidnight <= nextDateAtLocalMidnight) {
 
-      // Initialize the day if needed
-      if (!dailyTotals[dayStr]) {
-        dailyTotals[dayStr] = {};
+        // Get the YYYY-MM-DD string of the date
+        const dayStr = dateAtLocalMidnight.toISOString().split('T')[0];
+
+        // Initialize the day if needed
+        if (!dailyTotals[dayStr]) {
+          dailyTotals[dayStr] = {};
+        }
+
+        // Get the start date with time for this day, accounting for the time of the current timestamp
+        const startTimestamp = dateAtLocalMidnight > currentTimestamp ? dateAtLocalMidnight : currentTimestamp
+
+        // Advance the date
+        dateAtLocalMidnight = new Date(dateAtLocalMidnight)
+        dateAtLocalMidnight.setDate(dateAtLocalMidnight.getDate() + 1)
+
+        // Get the end date with time for this day, accounting for the time of the next timestamp
+        const endTimestamp = dateAtLocalMidnight < nextTimestamp ? dateAtLocalMidnight : nextTimestamp;
+
+        // Get the seconds elapsed between the two
+        const secondsBetweenTimestampsDay = (endTimestamp - startTimestamp) / 1000
+
+        console.log("startTimestamp", startTimestamp, "endTimestamp", endTimestamp, "secondsBetweenTimestampsDay", secondsBetweenTimestampsDay)
+
+        // Add the seconds to the state's total
+        dailyTotals[dayStr][currentState] =
+          (dailyTotals[dayStr][currentState] || 0) + secondsBetweenTimestampsDay;
       }
-
-      // Add the seconds to the state's total
-      dailyTotals[dayStr][currentState] =
-        (dailyTotals[dayStr][currentState] || 0) + diffSeconds;
 
       processedEntries++;
     }
