@@ -42,7 +42,8 @@ export const DEFAULT_CONFIG = {
   // Binary mode options for habit tracking
   binary_mode: false, // Enable binary/habit tracking mode
   binary_on_state: null, // Specific state to track as "on" (null = any non-ignored state)
-  binary_color: '#4CAF50', // Color for active days in binary mode
+  binary_color: '#4CAF50', // Color for active days in binary mode,
+  show_detail_view: true // true to enable the detail view, false to disable
 };
 
 /**
