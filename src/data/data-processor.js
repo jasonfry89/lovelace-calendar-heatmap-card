@@ -32,11 +32,8 @@ export function processDailyTotals(historyData, ignoredStates) {
 
     for (let i = 0; i < entityHistory.length; i++) {
       const current = entityHistory[i];
-      let next = entityHistory[i + 1];
-      if(i === entityHistory.length - 1) {
-        next = {...current}
-        next.last_changed = (new Date()).toISOString()
-      }
+      const isLastEntity = i === entityHistory.length - 1
+      const next = isLastEntity ? {...current, last_changed: (new Date()).toISOString()} :  entityHistory[i + 1]
 
       // Skip if either entry is missing
       if (!current || !next) {
