@@ -671,7 +671,7 @@ class CalendarHeatmapCard extends LitElement {
     if (this._selectedDate === date) {
       // Deselect if already selected
       this._selectedDate = null;
-    } else {
+    } else if(this._config.show_detail_view) {
       // Select the new date
       this._selectedDate = date;
     }
@@ -790,6 +790,20 @@ class CalendarHeatmapCard extends LitElement {
         </div>`
       : html``;
 
+    // Right Panel: Detail View
+    const detailView = this._config.show_detail_view
+      ? html`<div class="detail-view-container">
+        <detail-view
+          .selectedDate=${this._selectedDate}
+          .dayData=${dayData}
+          .summaryData=${summaryData}
+          .showSummary=${!this._selectedDate}
+          .binaryMode=${this._config.binary_mode || false}
+          .binaryStats=${this._binaryStats}
+        ></detail-view>
+      </div>`
+      : html``;
+
     return html`
       <ha-card>
         ${loadingIndicator}
@@ -827,18 +841,7 @@ class CalendarHeatmapCard extends LitElement {
               </div>
             </div>
           </div>
-
-          <!-- Right Panel: Detail View -->
-          <div class="detail-view-container">
-            <detail-view
-              .selectedDate=${this._selectedDate}
-              .dayData=${dayData}
-              .summaryData=${summaryData}
-              .showSummary=${!this._selectedDate}
-              .binaryMode=${this._config.binary_mode || false}
-              .binaryStats=${this._binaryStats}
-            ></detail-view>
-          </div>
+          ${detailView}
         </div>
       </ha-card>
     `;

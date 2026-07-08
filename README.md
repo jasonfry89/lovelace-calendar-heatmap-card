@@ -64,17 +64,18 @@ title: My Gaming Activity
 
 ### Configuration Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `entity` | string | (Required) | Entity ID to display history for |
-| `title` | string | "Game Activity" | Card title |
-| `ignored_states` | array | ["unknown", "idle", "offline", ""] | States to ignore in calculations |
-| `refresh_interval` | number | 300 | Refresh interval in seconds |
-| `start_day_of_week` | string | "monday" | Day to start the week on ("monday" or "sunday") |
-| `include_unknown` | boolean | false | Whether to include "unknown" state in calculations |
-| `binary_mode` | boolean | false | Enable binary/habit tracking mode (shows active/inactive instead of duration) |
-| `binary_on_state` | string | null | Specific state to track as "on" in binary mode (null = any non-ignored state) |
-| `binary_color` | string | "#4CAF50" | Color for active days in binary mode |
+| Option              | Type    | Default                            | Description                                                                   |
+|---------------------|---------|------------------------------------|-------------------------------------------------------------------------------|
+| `entity`            | string  | (Required)                         | Entity ID to display history for                                              |
+| `title`             | string  | "Game Activity"                    | Card title                                                                    |
+| `ignored_states`    | array   | ["unknown", "idle", "offline", ""] | States to ignore in calculations                                              |
+| `refresh_interval`  | number  | 300                                | Refresh interval in seconds                                                   |
+| `start_day_of_week` | string  | "monday"                           | Day to start the week on ("monday" or "sunday")                               |
+| `include_unknown`   | boolean | false                              | Whether to include "unknown" state in calculations                            |
+| `binary_mode`       | boolean | false                              | Enable binary/habit tracking mode (shows active/inactive instead of duration) |
+| `binary_on_state`   | string  | null                               | Specific state to track as "on" in binary mode (null = any non-ignored state) |
+| `binary_color`      | string  | "#4CAF50"                          | Color for active days in binary mode                                          |
+| `show_detail_view`  | boolean | true                               | Enable the detail view                                                        |
 
 ### Example Configurations
 
