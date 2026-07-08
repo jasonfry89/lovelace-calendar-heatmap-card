@@ -118,7 +118,6 @@ export function processDailyTotals(historyData, ignoredStates) {
       // Advance time for all days between the current and next history entities
       let dateAtLocalMidnight = new Date(currentTimestamp.getFullYear(), currentTimestamp.getMonth(), currentTimestamp.getDate());
       const nextDateAtLocalMidnight = new Date(nextTimestamp.getFullYear(), nextTimestamp.getMonth(), nextTimestamp.getDate());
-      console.log("currentTimestamp", currentTimestamp, "nextTimestamp", nextTimestamp, "dateAtLocalMidnight", dateAtLocalMidnight, "nextDateAtLocalMidnight", nextDateAtLocalMidnight)
       while(dateAtLocalMidnight <= nextDateAtLocalMidnight) {
 
         // Get the YYYY-MM-DD string of the date
@@ -141,8 +140,6 @@ export function processDailyTotals(historyData, ignoredStates) {
 
         // Get the seconds elapsed between the two
         const secondsBetweenTimestampsDay = (endTimestamp - startTimestamp) / 1000
-
-        console.log("startTimestamp", startTimestamp, "endTimestamp", endTimestamp, "secondsBetweenTimestampsDay", secondsBetweenTimestampsDay)
 
         // Add the seconds to the state's total
         dailyTotals[dayStr][currentState] =
