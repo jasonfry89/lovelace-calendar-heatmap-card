@@ -76,6 +76,7 @@ title: My Gaming Activity
 | `binary_on_state`   | string  | null                               | Specific state to track as "on" in binary mode (null = any non-ignored state) |
 | `binary_color`      | string  | "#4CAF50"                          | Color for active days in binary mode                                          |
 | `show_detail_view`  | boolean | true                               | Enable the detail view                                                        |
+| `show_title`        | boolean | true                               | Set to true to show the title, false to not show it                           |
 
 ### Example Configurations
 
