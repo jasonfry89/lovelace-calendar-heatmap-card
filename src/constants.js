@@ -36,6 +36,7 @@ export const MATERIAL_COLORS = [
  */
 export const DEFAULT_CONFIG = {
   title: 'Game Activity',
+  show_title: true, // true to show the title, false to disable
   ignored_states: ['unknown', 'idle', 'offline', ''],
   refresh_interval: 10 * 60, // 10 minutes in seconds
   start_day_of_week: 'monday', // can be "monday" or "sunday"
