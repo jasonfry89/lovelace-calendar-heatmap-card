@@ -95,9 +95,6 @@ class CalendarHeatmapCard extends LitElement {
           0 2px 5px rgba(0, 0, 0, 0.26)
         );
         --heatmap-border-radius: var(--ha-card-border-radius, 4px);
-
-        /* Height variable for card */
-        --heatmap-card-height: 235px;
       }
 
       ha-card {
@@ -106,8 +103,6 @@ class CalendarHeatmapCard extends LitElement {
         border-radius: var(--heatmap-border-radius);
         color: var(--heatmap-primary-text);
         background: var(--heatmap-card-background);
-        /* Fixed height for the card */
-        height: var(--heatmap-card-height);
         position: relative;
       }
 
@@ -228,12 +223,10 @@ class CalendarHeatmapCard extends LitElement {
           flex-direction: column;
           flex-wrap: nowrap;
           height: auto;
-          min-height: var(--heatmap-card-height);
         }
 
         ha-card {
           height: auto;
-          min-height: var(--heatmap-card-height);
         }
 
         .heatmap-container {
